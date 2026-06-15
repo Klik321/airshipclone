@@ -1,0 +1,4 @@
+# raw scraped material — not part of the deployed site
+scrape/
+assets/from-site/
+.git/

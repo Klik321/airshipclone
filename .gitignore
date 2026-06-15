@@ -17,3 +17,4 @@ node_modules/
 # raw scraped material (not for deploy)
 scrape/
 assets/from-site/
+.vercel

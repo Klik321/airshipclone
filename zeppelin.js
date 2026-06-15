@@ -12,10 +12,10 @@ import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
   var canvas = document.getElementById('bg-zeppelin');
   if (!canvas) return;
 
-  // --- guards: keep the lightweight SVG when 3D isn't a good idea ---
+  // --- guard: only the reduced-motion preference keeps the static SVG.
+  // The 3D runs on mobile too — the camera auto-fits narrow screens below. ---
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var smallScreen = window.matchMedia('(max-width: 760px)').matches;
-  if (reduced || smallScreen) return;
+  if (reduced) return;
 
   // quick WebGL capability check
   try {
@@ -33,6 +33,20 @@ import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
+
+  // Fit the camera so the full flight (horizontal amplitude ~2.6) stays in
+  // view on any aspect ratio. On wide desktops this leaves z at 9; on narrow
+  // portrait phones it dollies back so the zeppelin & its S-path still fit.
+  function fitCamera() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    var halfFov = (camera.fov * Math.PI / 180) / 2;
+    var minHalfWidth = 3.3;                       // world units we must show across
+    var z = minHalfWidth / (Math.tan(halfFov) * Math.max(camera.aspect, 0.05));
+    camera.position.z = Math.max(9, z);
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+  fitCamera();
 
   // ---------- lighting (golden-hour to match the palette) ----------
   scene.add(new THREE.HemisphereLight(0xbfd4ff, 0x6b5a3f, 0.85));
@@ -133,15 +147,18 @@ import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // ---------- resize ----------
+  // ---------- resize (re-fit the camera; keep running on every size) ----------
+  var resizeTimer;
   function onResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    // bail out to the SVG fallback if the viewport shrinks to mobile
-    if (window.innerWidth <= 760) { running = false; }
+    fitCamera();
+    targetU = computeU();          // mobile URL-bar show/hide changes layout
   }
-  window.addEventListener('resize', onResize, { passive: true });
+  window.addEventListener('resize', function () {
+    // throttle a touch — mobile fires resize rapidly while the URL bar slides
+    if (resizeTimer) return;
+    resizeTimer = setTimeout(function () { resizeTimer = null; onResize(); }, 80);
+  }, { passive: true });
+  window.addEventListener('orientationchange', onResize, { passive: true });
 
   // ---------- helpers ----------
   function smoothstep(a, b, x) {
