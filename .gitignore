@@ -13,3 +13,7 @@ npm-debug.log*
 
 # Dependencies (not used, but just in case)
 node_modules/
+
+# raw scraped material (not for deploy)
+scrape/
+assets/from-site/

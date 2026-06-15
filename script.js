@@ -74,4 +74,66 @@
     }, { threshold: 0.5 });
     sections.forEach(function (s) { spy.observe(s); });
   }
+
+  // ---------- Balloon-design gallery: category filter + lightbox ----------
+  var bdGrid = document.getElementById('bdGrid');
+  if (bdGrid) {
+    var items = Array.prototype.slice.call(bdGrid.querySelectorAll('.bd__item'));
+    var filters = Array.prototype.slice.call(document.querySelectorAll('.bd__filter'));
+    var countEl = document.getElementById('bdCount');
+    var activeCat = 'all';
+
+    // currently-visible items (drives the lightbox sequence)
+    function visible() {
+      return items.filter(function (el) { return !el.classList.contains('is-hidden'); });
+    }
+    function applyFilter(cat) {
+      activeCat = cat;
+      items.forEach(function (el) {
+        el.classList.toggle('is-hidden', cat !== 'all' && el.getAttribute('data-cat') !== cat);
+      });
+      filters.forEach(function (b) { b.classList.toggle('is-active', b.getAttribute('data-cat') === cat); });
+      if (countEl) {
+        var n = visible().length;
+        countEl.textContent = (cat === 'all' ? 'כל הקטגוריות' : cat) + ' · ' + n + ' תמונות';
+      }
+    }
+    filters.forEach(function (b) {
+      b.addEventListener('click', function () { applyFilter(b.getAttribute('data-cat')); });
+    });
+    applyFilter('all');
+
+    // Lightbox (navigates within the active filter only)
+    var lb = document.getElementById('lightbox');
+    var lbImg = lb ? lb.querySelector('img') : null;
+    var seq = [], cur = 0;
+    function openLb(el) {
+      seq = visible(); cur = seq.indexOf(el);
+      var img = el.querySelector('img');
+      lbImg.src = img.getAttribute('src'); lbImg.alt = img.getAttribute('alt') || '';
+      lb.classList.add('is-open'); document.body.style.overflow = 'hidden';
+    }
+    function closeLb() { lb.classList.remove('is-open'); document.body.style.overflow = ''; }
+    function step(d) {
+      if (!seq.length) return;
+      cur = (cur + d + seq.length) % seq.length;
+      var img = seq[cur].querySelector('img');
+      lbImg.src = img.getAttribute('src'); lbImg.alt = img.getAttribute('alt') || '';
+    }
+    items.forEach(function (el) {
+      el.addEventListener('click', function () { if (lb) openLb(el); });
+    });
+    if (lb) {
+      lb.querySelector('.lightbox__close').addEventListener('click', closeLb);
+      lb.querySelector('.lightbox__nav--prev').addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
+      lb.querySelector('.lightbox__nav--next').addEventListener('click', function (e) { e.stopPropagation(); step(1); });
+      lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+      document.addEventListener('keydown', function (e) {
+        if (!lb.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLb();
+        else if (e.key === 'ArrowRight') step(-1);   // RTL: right = previous
+        else if (e.key === 'ArrowLeft') step(1);
+      });
+    }
+  }
 })();
