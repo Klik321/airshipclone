@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Airship | פרסום על העננים – ספינות אוויר, צמ-בלימפים, צילום אווירי</title>
+  <title>Airship | פרסום על העננים – ספינות אוויר, בלוני צפלין, צילום אווירי</title>
   <meta name="description" content="Airship – פרסום אווירי מאז 2006. ספינות אוויר, בלוני צפלין, פרסום אווירי, בלוני פרסום, מתנפחי פרסום, קשתות אוויריות, צילום אווירי, בלימפ פאוורד. פרסום שמרחף מעל לכולם." />
   <meta name="keywords" content="ספינות אוויר, בלוני צפלין, פרסום אווירי, בלוני פרסום, מתנפחי פרסום, קשתות אוויריות, צפלין, בלימפ פאוורד" />
   <meta name="author" content="Airship" />
+  <meta name="theme-color" content="#14253a" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -21,14 +22,15 @@
   <link rel="icon" type="image/png" href="assets/logo.png" />
   <link rel="canonical" href="https://airship.co.il" />
 
-  <!-- Fonts -->
+  <!-- Fonts: distinctive Hebrew pairing -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="grain" aria-hidden="true"></div>
 
   <!-- ===== NAV ===== -->
   <header class="nav" id="nav">
@@ -56,6 +58,7 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
+      <div class="hero__sun" aria-hidden="true"></div>
       <div class="hero__sky" aria-hidden="true">
         <span class="cloud cloud--1"></span>
         <span class="cloud cloud--2"></span>
@@ -63,10 +66,13 @@
       </div>
 
       <div class="hero__content">
-        <p class="hero__eyebrow reveal">פרסום אווירי מאז 2006</p>
-        <h1 class="hero__title reveal">פרסום על העננים</h1>
+        <p class="hero__eyebrow reveal"><span class="rule"></span>פרסום אווירי מאז 2006</p>
+        <h1 class="hero__title">
+          <span class="reveal">פרסום</span>
+          <span class="reveal hero__title-accent">על העננים</span>
+        </h1>
         <p class="hero__desc reveal">
-          סְפינות אוויר, בלוני צפלין, בלוני פרסום ומתנפחים – פתרונות פרסום אוויריים
+          ספינות אוויר, בלוני צפלין, בלוני פרסום ומתנפחים — פתרונות פרסום אוויריים
           שמרימים את המותג שלכם גבוה מעל לכולם, לאירועים, ירידים, השקות וקמפיינים.
         </p>
         <div class="hero__actions reveal">
@@ -76,52 +82,62 @@
       </div>
 
       <div class="hero__airship" aria-hidden="true">
-        <svg viewBox="0 0 240 140" role="img" aria-label="ספינת אוויר מרחפת">
-          <ellipse cx="120" cy="62" rx="108" ry="46" fill="#2b7fd6"/>
-          <ellipse cx="120" cy="62" rx="108" ry="46" fill="url(#shine)"/>
-          <path d="M205 62c14 0 26-9 26-9s-12-9-26-9z" fill="#1f5fa3"/>
-          <path d="M198 40l22-14v72l-22-14z" fill="#1f5fa3"/>
-          <rect x="92" y="104" width="56" height="16" rx="8" fill="#e8722c"/>
-          <line x1="100" y1="106" x2="106" y2="96" stroke="#1f5fa3" stroke-width="2"/>
-          <line x1="140" y1="106" x2="134" y2="96" stroke="#1f5fa3" stroke-width="2"/>
+        <svg viewBox="0 0 260 150" role="img" aria-label="ספינת אוויר מרחפת">
           <defs>
+            <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#1f3a5c"/>
+              <stop offset="1" stop-color="#14253a"/>
+            </linearGradient>
             <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ffffff" stop-opacity="0.35"/>
-              <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+              <stop offset="0" stop-color="#ffffff" stop-opacity="0.4"/>
+              <stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/>
             </linearGradient>
           </defs>
+          <ellipse cx="128" cy="66" rx="116" ry="48" fill="url(#body)"/>
+          <ellipse cx="128" cy="66" rx="116" ry="48" fill="url(#shine)"/>
+          <path d="M236 66c12 0 22-8 22-8s-10-8-22-8z" fill="#c89a3c"/>
+          <path d="M226 42l24-15v78l-24-15z" fill="#c89a3c"/>
+          <circle cx="64" cy="60" r="4" fill="#ef5a2a"/>
+          <circle cx="104" cy="54" r="4" fill="#ef5a2a"/>
+          <circle cx="144" cy="54" r="4" fill="#ef5a2a"/>
+          <rect x="98" y="112" width="60" height="16" rx="8" fill="#ef5a2a"/>
+          <line x1="106" y1="113" x2="112" y2="102" stroke="#c89a3c" stroke-width="2"/>
+          <line x1="150" y1="113" x2="144" y2="102" stroke="#c89a3c" stroke-width="2"/>
         </svg>
       </div>
 
-      <a href="#about" class="hero__scroll" aria-label="גלול למטה">
-        <span></span>
-      </a>
+      <a href="#about" class="hero__scroll" aria-label="גלול למטה"><span></span></a>
     </section>
 
     <!-- ===== ABOUT ===== -->
     <section class="section about" id="about">
       <div class="container">
-        <h2 class="section__title reveal">קצת עלינו</h2>
-        <p class="section__lead reveal">
-          Airship מתמחה בפרסום אווירי מאז 2006. אנחנו מביאים את המסר שלכם אל השמיים –
-          ספינות אוויר, בלוני צפלין, מתנפחי פרסום, קשתות אוויריות, צילום אווירי וירידים –
-          ונותנים פתרון פרסום מלא וייחודי שמושך כל מבט.
-        </p>
-        <p class="section__text reveal">
-          הפתרונות שלנו מתאימים לאירועים עסקיים, כנסים, ירידים ותערוכות, השקות מוצר וקמפיינים.
-          אנחנו מלווים אתכם מהרעיון ועד הביצוע: עיצוב, הפקה, מתנפחי פרסום, ספינת אוויר ואירוע קמ"ע.
-        </p>
+        <div class="section__head reveal">
+          <span class="section__index">01</span>
+          <h2 class="section__title">קצת עלינו</h2>
+        </div>
+        <div class="about__grid">
+          <p class="section__lead reveal">
+            Airship מתמחה בפרסום אווירי מאז 2006. אנחנו מביאים את המסר שלכם אל השמיים —
+            ספינות אוויר, בלוני צפלין, מתנפחי פרסום, קשתות אוויריות, צילום אווירי וירידים —
+            ונותנים פתרון פרסום מלא וייחודי שמושך כל מבט.
+          </p>
+          <p class="section__text reveal">
+            הפתרונות שלנו מתאימים לאירועים עסקיים, כנסים, ירידים ותערוכות, השקות מוצר וקמפיינים.
+            אנחנו מלווים אתכם מהרעיון ועד הביצוע: עיצוב, הפקה, מתנפחי פרסום, ספינת אוויר ואירוע קמ"ע.
+          </p>
+        </div>
 
-        <div class="stats reveal">
-          <div class="stat">
-            <span class="stat__num" data-count="2006">2006</span>
+        <div class="stats">
+          <div class="stat reveal">
+            <span class="stat__num">2006</span>
             <span class="stat__label">פעילים משנת</span>
           </div>
-          <div class="stat">
-            <span class="stat__num" data-count="100">100%</span>
+          <div class="stat reveal">
+            <span class="stat__num">100%</span>
             <span class="stat__label">פתרון בהתאמה אישית</span>
           </div>
-          <div class="stat">
+          <div class="stat reveal">
             <span class="stat__num">∞</span>
             <span class="stat__label">חשיפה בגובה</span>
           </div>
@@ -130,29 +146,44 @@
     </section>
 
     <!-- ===== SERVICES (for rent) ===== -->
-    <section class="section section--alt services" id="services">
+    <section class="section section--paper services" id="services">
       <div class="container">
-        <h2 class="section__title reveal">שירותים להשכרה</h2>
-        <p class="section__lead reveal">פרסום שמרחף מעליכם – משכירים את כל מה שצריך כדי לבלוט בשמיים.</p>
+        <div class="section__head reveal">
+          <span class="section__index">02</span>
+          <h2 class="section__title">שירותים להשכרה</h2>
+        </div>
+        <p class="section__lead reveal">פרסום שמרחף מעליכם — משכירים את כל מה שצריך כדי לבלוט בשמיים.</p>
 
         <div class="cards">
           <article class="card reveal">
-            <div class="card__icon" aria-hidden="true">🎈</div>
+            <span class="card__num">i</span>
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2a7 7 0 0 1 7 7c0 4-4 7-7 9-3-2-7-5-7-9a7 7 0 0 1 7-7Z"/><path d="M10.5 17.5h3l-.6 3h-1.8z"/></svg>
+            </div>
             <h3>פרסום על העננים</h3>
             <p>קשתות אוויריות ופרסום מרחף שמושכים כל מבט באירוע.</p>
           </article>
           <article class="card reveal">
-            <div class="card__icon" aria-hidden="true">🎪</div>
+            <span class="card__num">ii</span>
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 3 9v11h18V9z"/><path d="M3 9h18"/><path d="M12 3v17"/></svg>
+            </div>
             <h3>אירועים עסקיים</h3>
-            <p>כנסים, ירידים ותערוכות – נוכחות אווירית בלתי נשכחת.</p>
+            <p>כנסים, ירידים ותערוכות — נוכחות אווירית בלתי נשכחת.</p>
           </article>
           <article class="card reveal">
-            <div class="card__icon" aria-hidden="true">🛩️</div>
+            <span class="card__num">iii</span>
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><ellipse cx="11" cy="11" rx="9" ry="5"/><path d="M20 11h2l-2 2v-4z"/><path d="M9 16l1 3h2l1-3"/></svg>
+            </div>
             <h3>פרסום אווירי</h3>
             <p>פרסום אווירי על ספינות אוויר ואירוע קמ"ע מעל הקהל.</p>
           </article>
           <article class="card reveal">
-            <div class="card__icon" aria-hidden="true">🚁</div>
+            <span class="card__num">iv</span>
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><ellipse cx="12" cy="10" rx="8" ry="6"/><path d="M9 16l1 4h4l1-4"/><path d="M12 4v12"/></svg>
+            </div>
             <h3>בלוני צפלין</h3>
             <p>בלוני צפלין, ספינות אוויר ובלימפ פאוורד להשכרה.</p>
           </article>
@@ -163,10 +194,13 @@
     <!-- ===== PRODUCTS (for sale) ===== -->
     <section class="section products" id="products">
       <div class="container">
-        <h2 class="section__title reveal">מוצרים למכירה</h2>
-        <p class="section__lead reveal">כל הציוד שצריך כדי להמריא – למכירה ובהתאמה מלאה.</p>
+        <div class="section__head reveal">
+          <span class="section__index">03</span>
+          <h2 class="section__title">מוצרים למכירה</h2>
+        </div>
+        <p class="section__lead reveal">כל הציוד שצריך כדי להמריא — למכירה ובהתאמה מלאה.</p>
 
-        <div class="cards">
+        <div class="cards cards--media">
           <article class="card card--media reveal">
             <div class="card__media"><img src="assets/feature_powered_airship.jpg" alt="ספינת אוויר ממונעת לפרסום" loading="lazy" /></div>
             <div class="card__body">
@@ -178,7 +212,7 @@
             <div class="card__media"><img src="assets/feature_aerial_photography.jpg" alt="צילום אווירי לאירועים ותערוכות" loading="lazy" /></div>
             <div class="card__body">
               <h3>צילום אווירי</h3>
-              <p>צילום אווירי – אירועים, תערוכות וכנסים מהאוויר.</p>
+              <p>צילום אווירי — אירועים, תערוכות וכנסים מהאוויר.</p>
             </div>
           </article>
           <article class="card card--media reveal">
@@ -192,64 +226,63 @@
             <div class="card__media"><img src="assets/feature_filming_video.jpg" alt="צילום וידאו אווירי לקמפיינים עסקיים" loading="lazy" /></div>
             <div class="card__body">
               <h3>צילום וידאו אווירי</h3>
-              <p>פרסום במחיר השווה לרווח – וידאו אווירי לקמפיינים עסקיים.</p>
+              <p>פרסום במחיר השווה לרווח — וידאו אווירי לקמפיינים עסקיים.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ===== DESIGN / SPECIAL SOLUTIONS ===== -->
-    <section class="section section--alt solutions" id="solutions">
+    <!-- ===== DESIGN / SPECIAL SOLUTIONS — keyword marquee ===== -->
+    <section class="section section--paper solutions" id="solutions">
       <div class="container">
-        <h2 class="section__title reveal">עיצוב ופתרונות מיוחדים</h2>
-        <p class="section__lead reveal">כל רעיון שמתרומם – אנחנו מעצבים, מפיקים ומשיקים בשבילכם.</p>
-        <ul class="tags reveal">
-          <li>פרסום על בלונים</li>
-          <li>צפלין מתנפח</li>
-          <li>צפלין וקשתות אוויריות</li>
-          <li>אווירי פרסום ומתנפחים</li>
-          <li>ספינת אוויר</li>
-          <li>בלונים מודפסים</li>
-          <li>בלוני הליום על חבל</li>
-          <li>שילוט מתנפח</li>
-          <li>פרסום מובייל</li>
-          <li>תאורת לילה</li>
-          <li>אירועים ספורטיביים</li>
-          <li>מסכים אוויריים</li>
-          <li>שיווק חוויתי וביצוע נשואי</li>
-        </ul>
+        <div class="section__head reveal">
+          <span class="section__index">04</span>
+          <h2 class="section__title">עיצוב ופתרונות מיוחדים</h2>
+        </div>
+        <p class="section__lead reveal">כל רעיון שמתרומם — אנחנו מעצבים, מפיקים ומשיקים בשבילכם.</p>
+      </div>
+      <div class="marquee reveal" aria-hidden="true">
+        <div class="marquee__track">
+          <span>פרסום על בלונים</span><i>✦</i><span>צפלין מתנפח</span><i>✦</i><span>קשתות אוויריות</span><i>✦</i><span>אווירי פרסום ומתנפחים</span><i>✦</i><span>ספינת אוויר</span><i>✦</i><span>בלונים מודפסים</span><i>✦</i><span>בלוני הליום על חבל</span><i>✦</i><span>שילוט מתנפח</span><i>✦</i><span>פרסום מובייל</span><i>✦</i><span>תאורת לילה</span><i>✦</i><span>אירועים ספורטיביים</span><i>✦</i><span>מסכים אוויריים</span><i>✦</i><span>שיווק חוויתי</span><i>✦</i>
+          <span>פרסום על בלונים</span><i>✦</i><span>צפלין מתנפח</span><i>✦</i><span>קשתות אוויריות</span><i>✦</i><span>אווירי פרסום ומתנפחים</span><i>✦</i><span>ספינת אוויר</span><i>✦</i><span>בלונים מודפסים</span><i>✦</i><span>בלוני הליום על חבל</span><i>✦</i><span>שילוט מתנפח</span><i>✦</i><span>פרסום מובייל</span><i>✦</i><span>תאורת לילה</span><i>✦</i><span>אירועים ספורטיביים</span><i>✦</i><span>מסכים אוויריים</span><i>✦</i><span>שיווק חוויתי</span><i>✦</i>
+        </div>
       </div>
     </section>
 
     <!-- ===== GALLERY ===== -->
     <section class="section gallery" id="gallery">
       <div class="container">
-        <h2 class="section__title reveal">גלריה</h2>
-        <p class="section__lead reveal">רגעים מהשמיים – מבחר מהפרויקטים שלנו.</p>
+        <div class="section__head reveal">
+          <span class="section__index">05</span>
+          <h2 class="section__title">גלריה</h2>
+        </div>
+        <p class="section__lead reveal">רגעים מהשמיים — מבחר מהפרויקטים שלנו.</p>
 
         <div class="gallery__grid">
-          <figure class="gallery__item reveal"><img src="assets/feature_powered_airship.jpg" alt="ספינת אוויר ממונעת באוויר" loading="lazy" /></figure>
-          <figure class="gallery__item reveal"><img src="assets/feature_tethered_blimps.jpg" alt="בלוני פרסום קשורים" loading="lazy" /></figure>
-          <figure class="gallery__item reveal"><img src="assets/feature_aerial_photography.jpg" alt="צילום אווירי של אירוע" loading="lazy" /></figure>
-          <figure class="gallery__item reveal"><img src="assets/feature_filming_video.jpg" alt="צילום וידאו אווירי" loading="lazy" /></figure>
+          <figure class="gallery__item gallery__item--tall reveal"><img src="assets/feature_powered_airship.jpg" alt="ספינת אוויר ממונעת באוויר" loading="lazy" /><figcaption>ספינת אוויר</figcaption></figure>
+          <figure class="gallery__item reveal"><img src="assets/feature_tethered_blimps.jpg" alt="בלוני פרסום קשורים" loading="lazy" /><figcaption>בלוני פרסום</figcaption></figure>
+          <figure class="gallery__item reveal"><img src="assets/feature_aerial_photography.jpg" alt="צילום אווירי של אירוע" loading="lazy" /><figcaption>צילום אווירי</figcaption></figure>
+          <figure class="gallery__item gallery__item--wide reveal"><img src="assets/feature_filming_video.jpg" alt="צילום וידאו אווירי" loading="lazy" /><figcaption>וידאו אווירי</figcaption></figure>
         </div>
       </div>
     </section>
 
-    <!-- ===== CONTACT / CTA ===== -->
-    <section class="section section--alt contact" id="contact">
-      <div class="container">
-        <h2 class="section__title reveal">צרו קשר</h2>
-        <p class="section__lead reveal">
-          רוצים שהמותג שלכם יראה מעל לכולם? דברו איתנו ונבנה יחד את פתרון הפרסום
-          האווירי לאירוע, יריד, השקה או קמפיין.
-        </p>
-
-        <div class="contact__actions reveal">
-          <a class="btn btn--accent" href="https://wa.me/972522315086" target="_blank" rel="noopener">וואטסאפ</a>
-          <a class="btn btn--blue" href="tel:0522315086">052-2315086</a>
-          <a class="btn btn--ghost" href="mailto:tal@airship.co.il">tal@airship.co.il</a>
+    <!-- ===== CONTACT / CTA — dark panel ===== -->
+    <section class="section contact" id="contact">
+      <div class="contact__panel">
+        <div class="contact__rays" aria-hidden="true"></div>
+        <div class="container contact__inner">
+          <span class="section__index section__index--light reveal">06</span>
+          <h2 class="contact__title reveal">רוצים שהמותג שלכם<br>יראה מעל לכולם?</h2>
+          <p class="contact__lead reveal">
+            דברו איתנו ונבנה יחד את פתרון הפרסום האווירי לאירוע, יריד, השקה או קמפיין.
+          </p>
+          <div class="contact__actions reveal">
+            <a class="btn btn--accent" href="https://wa.me/972522315086" target="_blank" rel="noopener">וואטסאפ</a>
+            <a class="btn btn--gold" href="tel:0522315086">052-2315086</a>
+            <a class="btn btn--outline-light" href="mailto:tal@airship.co.il">tal@airship.co.il</a>
+          </div>
         </div>
       </div>
     </section>
@@ -260,7 +293,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <img src="assets/logo.png" alt="לוגו Airship" class="footer__logo" />
-      <p class="footer__copy">© <span id="year"></span> Airship – פרסום על העננים · פעילים מאז 2006</p>
+      <p class="footer__copy">© <span id="year"></span> Airship — פרסום על העננים · פעילים מאז 2006</p>
       <p class="footer__seo">
         ספינות אוויר · בלוני צפלין · פרסום אווירי · בלוני פרסום · מתנפחי פרסום ·
         קשתות אוויריות · צפלין · בלימפ פאוורד · צילום אווירי
