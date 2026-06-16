@@ -28,6 +28,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Import map so Three.js add-ons (OrbitControls, DecalGeometry) resolve `three` -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -47,6 +57,7 @@
         <a href="#products">מוצרים</a>
         <a href="#balloon-design">עיצוב בלונים</a>
         <a href="#gallery">גלריה</a>
+        <a href="#customizer">עצבו ספינה</a>
         <a href="#contact" class="nav__cta">צור קשר</a>
       </nav>
 
@@ -406,12 +417,78 @@
       </div>
     </section>
 
+    <!-- ===== 3D LOGO CUSTOMIZER ===== -->
+    <section class="section customizer" id="customizer">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__index">07</span>
+          <h2 class="section__title">עצבו ספינת אוויר משלכם</h2>
+        </div>
+        <p class="section__lead reveal">
+          העלו את הלוגו שלכם, מקמו אותו על גוף ספינת האוויר וסובבו את הדגם ב־360° —
+          כך תראו בדיוק איך המותג שלכם ייראה כשהוא מרחף באוויר.
+        </p>
+
+        <div class="lp__wrap reveal">
+          <!-- control panel -->
+          <aside class="lp__panel" aria-label="פאנל עיצוב הספינה">
+            <div class="lp__group">
+              <input type="file" id="lp-file" class="lp__file" accept="image/png,image/jpeg,image/svg+xml" />
+              <label for="lp-file" class="btn btn--accent lp__upload" tabindex="0">⬆ העלאת לוגו</label>
+              <p class="lp__note">PNG / JPG / SVG · רקע שקוף מומלץ</p>
+            </div>
+
+            <div class="lp__group">
+              <label class="lp__label" for="lp-width">רוחב הלוגו</label>
+              <input type="range" id="lp-width" min="0.5" max="3.5" step="0.01" value="1.8" />
+            </div>
+            <div class="lp__group">
+              <label class="lp__label" for="lp-height">גובה הלוגו</label>
+              <input type="range" id="lp-height" min="0.4" max="2.5" step="0.01" value="1.2" />
+            </div>
+            <div class="lp__group">
+              <label class="lp__label" for="lp-fore">מיקום לאורך הגוף</label>
+              <input type="range" id="lp-fore" min="-2.6" max="2.6" step="0.01" value="0" />
+            </div>
+            <div class="lp__group">
+              <label class="lp__label" for="lp-vert">גובה על הגוף</label>
+              <input type="range" id="lp-vert" min="-0.7" max="0.7" step="0.01" value="0.12" />
+            </div>
+            <div class="lp__group">
+              <label class="lp__label" for="lp-rot">סיבוב הלוגו</label>
+              <input type="range" id="lp-rot" min="-180" max="180" step="1" value="0" />
+            </div>
+
+            <div class="lp__group">
+              <span class="lp__label">צבע גוף הספינה</span>
+              <div class="lp__swatches" id="lp-swatches" role="group" aria-label="צבע גוף הספינה">
+                <button class="lp__swatch is-active" type="button" data-color="#e9e7e1" style="--sw:#e9e7e1" aria-label="אפור בהיר"></button>
+                <button class="lp__swatch" type="button" data-color="#1e2c49" style="--sw:#1e2c49" aria-label="כחול כהה"></button>
+                <button class="lp__swatch" type="button" data-color="#7c2020" style="--sw:#7c2020" aria-label="אדום עמוק"></button>
+                <button class="lp__swatch" type="button" data-color="#1f4f8c" style="--sw:#1f4f8c" aria-label="כחול"></button>
+                <button class="lp__swatch" type="button" data-color="#5f6b3a" style="--sw:#5f6b3a" aria-label="זית"></button>
+              </div>
+            </div>
+
+            <button class="btn btn--ghost lp__snap" id="lp-snap" type="button">⤓ הורדת תמונה</button>
+          </aside>
+
+          <!-- 3D stage -->
+          <div class="lp__stage">
+            <canvas id="lp-canvas" class="lp__canvas"></canvas>
+            <p class="lp__hint" aria-hidden="true">גררו לסיבוב · גלגלת לזום</p>
+            <p class="lp__fallback" id="lp-fallback" hidden>הדפדפן אינו תומך בתצוגת תלת־ממד.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== CONTACT / CTA — dark panel ===== -->
     <section class="section contact" id="contact">
       <div class="contact__panel">
         <div class="contact__rays" aria-hidden="true"></div>
         <div class="container contact__inner">
-          <span class="section__index section__index--light reveal">07</span>
+          <span class="section__index section__index--light reveal">08</span>
           <h2 class="contact__title reveal">רוצים שהמותג שלכם<br>יראה מעל לכולם?</h2>
           <p class="contact__lead reveal">
             דברו איתנו ונבנה יחד את פתרון הפרסום האווירי לאירוע, יריד, השקה או קמפיין.
@@ -456,5 +533,6 @@
 
   <script src="script.js"></script>
   <script type="module" src="zeppelin.js"></script>
+  <script type="module" src="logo-preview.js"></script>
 </body>
 </html>
