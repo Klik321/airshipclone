@@ -138,9 +138,9 @@
   }
 
   // ---------- Lead questionnaire → Google Sheet (via Apps Script) ----------
-  // Paste your deployed Apps Script Web App URL here (ends with /exec).
-  // Until then, the form gracefully falls back to a pre-filled WhatsApp message.
-  var LEAD_ENDPOINT = '';
+  // Deployed Apps Script Web App URL (appends each submission to the Google Sheet).
+  // If this is ever cleared, the form gracefully falls back to a WhatsApp message.
+  var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbweXMJ1ngRPAaUpQ0srRBsqxkz8xrBWs-YpsRwuLbjVfenD__ceCfWN7-3XKcO0qPlB/exec';
 
   var leadForm = document.getElementById('leadForm');
   if (leadForm) {
