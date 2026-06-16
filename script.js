@@ -136,4 +136,100 @@
       });
     }
   }
+
+  // ---------- Lead questionnaire → Google Sheet (via Apps Script) ----------
+  // Paste your deployed Apps Script Web App URL here (ends with /exec).
+  // Until then, the form gracefully falls back to a pre-filled WhatsApp message.
+  var LEAD_ENDPOINT = '';
+
+  var leadForm = document.getElementById('leadForm');
+  if (leadForm) {
+    var statusEl = document.getElementById('leadStatus');
+    var submitBtn = leadForm.querySelector('.lead__submit');
+
+    function setStatus(msg, kind) {
+      if (!statusEl) return;
+      statusEl.textContent = msg || '';
+      statusEl.className = 'lead__status' + (kind ? ' is-' + kind : '');
+    }
+    function fieldEl(name) { return leadForm.querySelector('[name="' + name + '"]'); }
+    function markInvalid(el, bad) { if (el) el.classList.toggle('is-invalid', !!bad); }
+
+    function validate(data) {
+      var ok = true;
+      var need = leadForm.querySelector('input[name="need"]:checked');
+      if (!need) ok = false;   // (radio chips have no single element to flag)
+      var nameEl = fieldEl('name'), phoneEl = fieldEl('phone'), emailEl = fieldEl('email');
+      var nameBad = !data.name;
+      var phoneBad = (data.phone.replace(/\D/g, '').length < 7);
+      var emailBad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+      markInvalid(nameEl, nameBad); markInvalid(phoneEl, phoneBad); markInvalid(emailEl, emailBad);
+      return ok && !nameBad && !phoneBad && !emailBad;
+    }
+
+    function collect() {
+      var need = leadForm.querySelector('input[name="need"]:checked');
+      return {
+        need: need ? need.value : '',
+        solution: (fieldEl('solution') || {}).value || '',
+        occasion: (fieldEl('occasion') || {}).value || '',
+        name: ((fieldEl('name') || {}).value || '').trim(),
+        phone: ((fieldEl('phone') || {}).value || '').trim(),
+        email: ((fieldEl('email') || {}).value || '').trim(),
+        notes: ((fieldEl('notes') || {}).value || '').trim(),
+        source: 'airship-website',
+        page: location.href
+      };
+    }
+
+    function whatsappFallback(d) {
+      var lines = [
+        'פנייה חדשה מהאתר:',
+        'שם: ' + d.name,
+        'טלפון: ' + d.phone,
+        'אימייל: ' + d.email,
+        'סוג פנייה: ' + d.need,
+        'פתרון: ' + (d.solution || '—'),
+        'אירוע: ' + (d.occasion || '—'),
+        d.notes ? 'הערות: ' + d.notes : ''
+      ].filter(Boolean);
+      return 'https://wa.me/972522315086?text=' + encodeURIComponent(lines.join('\n'));
+    }
+
+    leadForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = collect();
+      if (!validate(data)) {
+        setStatus('אנא מלאו שם, טלפון, אימייל תקין ובחרו מה אתם מחפשים.', 'err');
+        return;
+      }
+
+      // No endpoint wired yet → hand off to WhatsApp so no lead is lost.
+      if (!LEAD_ENDPOINT) {
+        setStatus('מעבירים אתכם לוואטסאפ לשליחת הפנייה…', 'busy');
+        window.open(whatsappFallback(data), '_blank', 'noopener');
+        return;
+      }
+
+      setStatus('שולח…', 'busy');
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',                                  // Apps Script: fire-and-forget
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      }).then(function () {
+        setStatus('תודה! הפנייה נשלחה ונחזור אליכם בהקדם. ✦', 'ok');
+        leadForm.reset();
+        leadForm.querySelectorAll('.is-invalid').forEach(function (el) { el.classList.remove('is-invalid'); });
+      }).catch(function () {
+        // network failure → don't lose the lead, offer WhatsApp
+        setStatus('השליחה נכשלה. נסו שוב או שלחו בוואטסאפ.', 'err');
+        window.open(whatsappFallback(data), '_blank', 'noopener');
+      }).finally(function () {
+        if (submitBtn) submitBtn.disabled = false;
+      });
+    });
+  }
 })();

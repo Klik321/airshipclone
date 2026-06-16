@@ -491,11 +491,85 @@
           <span class="section__index section__index--light reveal">08</span>
           <h2 class="contact__title reveal">רוצים שהמותג שלכם<br>יראה מעל לכולם?</h2>
           <p class="contact__lead reveal">
-            דברו איתנו ונבנה יחד את פתרון הפרסום האווירי לאירוע, יריד, השקה או קמפיין.
+            ענו על כמה שאלות קצרות ונחזור אליכם עם הצעת פתרון הפרסום האווירי המתאימה בדיוק לכם.
           </p>
+
+          <form class="lead reveal" id="leadForm" novalidate>
+            <!-- 1 · what do they need -->
+            <fieldset class="lead__field">
+              <legend class="lead__legend">מה אתם מחפשים?</legend>
+              <div class="lead__chips" role="radiogroup" aria-label="סוג הפנייה">
+                <label class="lead__chip"><input type="radio" name="need" value="השכרת פרסום אווירי" required /><span>השכרת פרסום אווירי</span></label>
+                <label class="lead__chip"><input type="radio" name="need" value="רכישת מוצר" /><span>רכישת מוצר</span></label>
+                <label class="lead__chip"><input type="radio" name="need" value="עיצוב והפקה מיוחדים" /><span>עיצוב והפקה מיוחדים</span></label>
+                <label class="lead__chip"><input type="radio" name="need" value="ייעוץ — עדיין לא בטוח" /><span>עדיין לא בטוח, רוצה ייעוץ</span></label>
+              </div>
+            </fieldset>
+
+            <!-- 2 · which solution (from the site's offering) -->
+            <div class="lead__row">
+              <div class="lead__group">
+                <label class="lead__label" for="lead-solution">איזה פתרון מעניין אתכם?</label>
+                <select class="lead__input" id="lead-solution" name="solution">
+                  <option value="">בחרו פתרון…</option>
+                  <option>ספינת אוויר / בלון צפלין</option>
+                  <option>בלוני צפלין בשלט רחוק</option>
+                  <option>בלוני פרסום</option>
+                  <option>מתנפחי ענק לפרסום</option>
+                  <option>בלוני קרקע</option>
+                  <option>קשתות אוויריות</option>
+                  <option>אוהלים מתנפחים</option>
+                  <option>שילוט מתנפח</option>
+                  <option>צילום אווירי</option>
+                  <option>סקיי דנסר / רקדן אוויר</option>
+                  <option>בלוני הליום</option>
+                  <option>אחר / לא בטוח</option>
+                </select>
+              </div>
+              <div class="lead__group">
+                <label class="lead__label" for="lead-occasion">לאיזה אירוע?</label>
+                <select class="lead__input" id="lead-occasion" name="occasion">
+                  <option value="">בחרו אירוע…</option>
+                  <option>אירוע עסקי / כנס</option>
+                  <option>תערוכה / יריד</option>
+                  <option>פתיחת מתחם / חנות</option>
+                  <option>השקת מוצר</option>
+                  <option>אירוע ספורט</option>
+                  <option>קמפיין פרסומי</option>
+                  <option>אירוע פרטי</option>
+                  <option>אחר</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 3 · contact details -->
+            <div class="lead__row">
+              <div class="lead__group">
+                <label class="lead__label" for="lead-name">שם מלא</label>
+                <input class="lead__input" id="lead-name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="lead__group">
+                <label class="lead__label" for="lead-phone">טלפון</label>
+                <input class="lead__input" id="lead-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
+              </div>
+            </div>
+            <div class="lead__group">
+              <label class="lead__label" for="lead-email">אימייל</label>
+              <input class="lead__input" id="lead-email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="lead__group">
+              <label class="lead__label" for="lead-notes">הערות (אופציונלי)</label>
+              <textarea class="lead__input" id="lead-notes" name="notes" rows="2"></textarea>
+            </div>
+
+            <button class="btn btn--accent lead__submit" type="submit">שליחת הפנייה</button>
+            <p class="lead__status" id="leadStatus" role="status" aria-live="polite"></p>
+          </form>
+
           <div class="contact__actions reveal">
-            <a class="btn btn--accent" href="https://wa.me/972522315086" target="_blank" rel="noopener">וואטסאפ</a>
-            <a class="btn btn--gold" href="tel:0522315086">052-2315086</a>
+            <span class="contact__or">או דברו איתנו ישירות:</span>
+            <a class="btn btn--gold" href="https://wa.me/972522315086" target="_blank" rel="noopener">וואטסאפ</a>
+            <a class="btn btn--outline-light" href="tel:0522315086">052-2315086</a>
             <a class="btn btn--outline-light" href="mailto:tal@airship.co.il">tal@airship.co.il</a>
           </div>
         </div>

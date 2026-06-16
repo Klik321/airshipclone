@@ -442,7 +442,57 @@ body.webgl-active .hero__airship { display: none; }
 .section__index--light { color: var(--gold); display: inline-block; margin-bottom: 20px; }
 .contact__title { font-family: var(--serif); font-weight: 900; line-height: 1.08; letter-spacing: -.5px; color: var(--paper); font-size: clamp(2.2rem, 6vw, 4.4rem); margin-bottom: 24px; }
 .contact__lead { color: #c7d2de; font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 640px; margin: 0 auto 42px; }
-.contact__actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.contact__actions { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 30px; }
+.contact__or { color: #9fb0c2; font-weight: 600; width: 100%; margin-bottom: 4px; }
+
+/* ===== Lead questionnaire form ===== */
+.lead {
+  max-width: 680px; margin: 0 auto; text-align: right;
+  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(243, 234, 217, 0.16);
+  border-radius: var(--radius); padding: 28px; backdrop-filter: blur(8px);
+  display: flex; flex-direction: column; gap: 18px;
+}
+.lead__field { border: 0; padding: 0; margin: 0; }
+.lead__legend { color: var(--paper); font-weight: 700; font-size: 1.02rem; margin-bottom: 12px; padding: 0; }
+.lead__chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.lead__chip { position: relative; cursor: pointer; }
+.lead__chip input { position: absolute; opacity: 0; width: 0; height: 0; }
+.lead__chip span {
+  display: inline-block; padding: 9px 16px; border-radius: 999px; font-weight: 600; font-size: .92rem;
+  color: #c7d2de; background: rgba(255,255,255,0.06); border: 1px solid rgba(243,234,217,0.2);
+  transition: background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
+}
+.lead__chip:hover span { border-color: var(--accent); color: var(--paper); }
+.lead__chip input:checked + span { background: var(--accent); color: #fff; border-color: var(--accent); }
+.lead__chip input:focus-visible + span { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+.lead__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.lead__group { display: flex; flex-direction: column; gap: 7px; }
+.lead__label { color: #c7d2de; font-weight: 600; font-size: .9rem; }
+.lead__input {
+  width: 100%; font-family: var(--sans); font-size: 1rem; color: var(--paper);
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(243,234,217,0.22);
+  border-radius: 12px; padding: 12px 14px; transition: border-color .25s var(--ease), background .25s var(--ease);
+}
+.lead__input::placeholder { color: #8295a8; }
+.lead__input:focus { outline: none; border-color: var(--accent); background: rgba(255,255,255,0.1); }
+.lead__input:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+select.lead__input { appearance: none; cursor: pointer; background-image:
+  linear-gradient(45deg, transparent 50%, #c7d2de 50%), linear-gradient(135deg, #c7d2de 50%, transparent 50%);
+  background-position: left 16px center, left 11px center; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+select.lead__input option { color: #14253a; }   /* dark text in the dropdown list */
+.lead__input.is-invalid { border-color: #ff6b5e; background: rgba(255,107,94,0.08); }
+
+.lead__submit { margin-top: 4px; }
+.lead__status { min-height: 1.2em; font-weight: 600; margin: 0; text-align: center; }
+.lead__status.is-ok { color: #6ee7a0; }
+.lead__status.is-err { color: #ff8b80; }
+.lead__status.is-busy { color: #c7d2de; }
+
+@media (max-width: 600px) {
+  .lead { padding: 20px; }
+  .lead__row { grid-template-columns: 1fr; }
+}
 
 /* ===== Footer ===== */
 .footer { background: #0e1a29; color: #9fb0c2; padding: 64px 0 48px; text-align: center; }
